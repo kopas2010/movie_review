@@ -1,24 +1,26 @@
-# README
+# movie_review
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+他人の書いた映画のレビューを見たり、自分で投稿したりできるコミュニティサイト
 
-Things you may want to cover:
+### テーマを選んだ理由
+映画を見る際に、よくレビューサイトを活用するのですが、その際にこんな機能があったら便利なのにと思うことがあったため
 
-* Ruby version
+### ターゲットユーザ
+映画を見るのが好きな人
 
-* System dependencies
+### 主な利用シーン
+「この映画を見ようかな？」と悩んでいるときに他人の投稿を見て判断できる
 
-* Configuration
+## 設計書
 
-* Database creation
 
-* Database initialization
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
