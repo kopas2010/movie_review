@@ -1,0 +1,18 @@
+<h1>User::Movies#show</h1>
+<p>Find me in app/views/user/reviews/show.html.erb</p>
+
+<h2>タイトル</h2>
+<p><%= @movie.title %></p>
+
+<p>画像</p>
+  <% if @movie.image.attached? %>
+    <%= image_tag @movie.image, size: "200x200" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
+
+<h2>本文</h2>
+<p><%= @movie.body %></p>
+
+<%= link_to "編集", edit_movie_path(@movie.id) %>
+<%= link_to "削除", movie_path(@movie.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>

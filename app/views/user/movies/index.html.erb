@@ -1,0 +1,17 @@
+<h1>User::Movies#index</h1>
+<p>Find me in app/views/user/reviews/show.html.erb</p>
+<h1>投稿一覧</h1>
+
+<% @movies.each do |movie| %>
+
+  <p>画像</p>
+  <% if movie.image.attached? %>
+    <%= image_tag movie.image, size: "100x100" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "100x100" %>
+  <% end %>
+
+  <p>タイトル</p>
+  <span><%= link_to movie.title, movie_path(movie.id)  %></span>
+
+<% end %>
