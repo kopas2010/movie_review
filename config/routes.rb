@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'homes/top'
+  end
 # ユーザー用
 devise_for :users,skip: [:passwords], controllers: {
   registrations: "user/registrations",
@@ -13,14 +16,16 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 # 管理者
 namespace :admin do
+  resources :users, only: [:index, :show]
 end
 
 # ユーザー
 scope module: :user do
   root :to => "homes#top"
-  resources :movies, only: [:new, :index, :show, :edit, :create, :update, :destroy]
-  resources :reviews, only: [:new, :index, :show, :edit, :create, :update]
-  resources :reviewers, only: [:new, :index, :show, :edit]
+  resources :movies, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
+    resources :reviews, only: [:index, :show, :edit, :create, :update, :destroy]
+  end
+  resources :users, only: [:index, :show, :edit, :update]
   resources :post_images, only: [:new, :index, :show]
 end
 end

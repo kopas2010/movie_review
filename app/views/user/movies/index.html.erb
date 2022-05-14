@@ -1,6 +1,6 @@
 <h1>User::Movies#index</h1>
 <p>Find me in app/views/user/reviews/show.html.erb</p>
-<h1>投稿一覧</h1>
+<h1>映画一覧</h1>
 
 <% @movies.each do |movie| %>
 
@@ -13,5 +13,7 @@
 
   <p>タイトル</p>
   <span><%= link_to movie.title, movie_path(movie.id)  %></span>
+
+  <p><%= link_to "#{movie.reviews.count} コメント", movie_path(movie.id) %></p>
 
 <% end %>

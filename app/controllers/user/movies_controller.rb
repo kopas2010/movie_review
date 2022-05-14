@@ -4,9 +4,12 @@ class User::MoviesController < ApplicationController
   end
 
   def create
-    movie = Movie.new(movie_params)
-    movie.save
-    redirect_to movie_path(movie.id)
+    @movie = Movie.new(movie_params)
+    if @movie.save
+      redirect_to movie_path(@movie.id)
+    else
+      render :new
+    end
   end
 
   def index
@@ -15,6 +18,7 @@ class User::MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    @review = Review.new
   end
 
   def edit

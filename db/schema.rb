@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 2022_05_12_140039) do
   create_table "reviews", force: :cascade do |t|
     t.string "title"
     t.text "body"
+    t.integer "user_id"
+    t.integer "movie_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

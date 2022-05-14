@@ -1,3 +1,9 @@
 <header>
   _admin_header.html
+  <li>
+    <%= link_to "会員一覧", admin_users_path %>
+  </li>
+  <li>
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+  </li>
 </header>
