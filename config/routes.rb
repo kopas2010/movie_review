@@ -27,5 +27,8 @@ scope module: :user do
   end
   resources :users, only: [:index, :show, :edit, :update]
   resources :post_images, only: [:new, :index, :show]
+  #退会機能
+  get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+  patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
 end
 end

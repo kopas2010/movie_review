@@ -21,7 +21,7 @@ class User::ReviewsController < ApplicationController
   end
 
   def update
-    movie = Movie.find(params[:id])
+    movie = Movie.find(params[:movie_id])
     review = Review.find(params[:id])
     review.update(review_params)
     redirect_to movie_path(movie.id)

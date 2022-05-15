@@ -2,5 +2,8 @@
 <% @users.each do |user| %>
   <h3><%= link_to user.name, admin_user_path(user.id) %></h3>
   <%= image_tag user.get_profile_image(100,100) %>
-
+  <% if user.is_deleted %>
+    退会済ユーザー
+  <% else %>
+  <% end %>
 <% end %>
