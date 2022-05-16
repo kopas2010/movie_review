@@ -2,6 +2,7 @@
 <% @users.each do |user| %>
   <h3><%= link_to user.name, admin_user_path(user.id) %></h3>
   <%= image_tag user.get_profile_image(100,100) %>
+  <%= link_to "#{user.reviews.count} レビュー", admin_user_path(user.id) %>
   <% if user.is_deleted %>
     退会済ユーザー
   <% else %>

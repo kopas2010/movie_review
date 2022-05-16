@@ -3,5 +3,6 @@
   <% else %>
     <h3><%= link_to user.name, user_path(user.id) %></h3>
     <%= image_tag user.get_profile_image(100,100) %>
+    <%= link_to "#{user.reviews.count} レビュー", user_path(user.id) %>
   <% end %>
 <% end %>

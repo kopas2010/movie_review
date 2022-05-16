@@ -9,13 +9,6 @@ class User::ReviewsController < ApplicationController
     redirect_to movie_path(movie.id)
   end
 
-  def index
-    @reviews = Review.all
-  end
-
-  def show
-  end
-
   def edit
     @review = Review.find(params[:id])
   end
