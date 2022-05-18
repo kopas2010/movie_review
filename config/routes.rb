@@ -23,8 +23,11 @@ end
 scope module: :user do
   root :to => "homes#top"
   resources :movies, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
-    resources :reviews, only: [:index, :show, :edit, :create, :update, :destroy]
+    resources :reviews, only: [:show, :edit, :create, :update, :destroy]
   end
+
+  get "reviews/index" => "reviews/index"
+
   resources :users, only: [:index, :show, :edit, :update]
   resources :post_images, only: [:new, :index, :show]
   #退会機能

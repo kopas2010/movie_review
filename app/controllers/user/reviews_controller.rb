@@ -20,6 +20,10 @@ class User::ReviewsController < ApplicationController
     redirect_to movie_path(movie.id)
   end
 
+  def index
+    @reviews = Review.all
+  end
+
   def destroy
     Review.find(params[:id]).destroy
     redirect_to movie_path(params[:movie_id])
