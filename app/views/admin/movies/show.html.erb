@@ -1,0 +1,26 @@
+<h2>タイトル</h2>
+<p><%= @movie.title %></p>
+
+<p>画像</p>
+  <% if @movie.image.attached? %>
+    <%= image_tag @movie.image, size: "200x200" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
+
+<h2>本文</h2>
+<p><%= @movie.body %></p>
+  <%= link_to "編集", edit_admin_movie_path(@movie.id) %>
+  <%= link_to "削除", admin_movie_path(@movie.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<div>
+  <p>コメント件数：<%= @movie.reviews.count %></p>
+  <% @movie.reviews.each do |review| %>
+    <p><%= image_tag review.user.get_profile_image(100,100) %></p>
+    <%= link_to review.user.name, admin_user_path(review.user.id) %>
+    <%= review.created_at.strftime('%Y/%m/%d') %>
+    <%= review.title %>
+    <%= review.body %>
+    <%= link_to "編集", edit_admin_review_path(review) %>
+    <%= link_to "削除", admin_review_path(review), method: :delete %>
+  <% end %>
+</div>

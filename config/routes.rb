@@ -16,7 +16,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 # 管理者
 namespace :admin do
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show, :edit, :update]
+  resources :reviews, only: [:index, :show, :edit, :update, :destroy]
+  resources :movies, only: [:index, :show, :edit, :update, :destroy]
 end
 
 # ユーザー

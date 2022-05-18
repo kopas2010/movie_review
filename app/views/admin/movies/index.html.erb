@@ -1,0 +1,17 @@
+<h1>映画一覧</h1>
+
+<% @movies.each do |movie| %>
+
+  <p>画像</p>
+  <% if movie.image.attached? %>
+    <%= image_tag movie.image, size: "100x100" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "100x100" %>
+  <% end %>
+
+  <p>タイトル</p>
+  <span><%= link_to movie.title, admin_movie_path(movie.id)  %></span>
+
+  <p><%= link_to "#{movie.reviews.count} レビュー", admin_movie_path(movie.id) %></p>
+
+<% end %>
