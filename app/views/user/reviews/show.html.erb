@@ -6,21 +6,28 @@
   <%= @review.created_at.strftime('%Y/%m/%d') %>
   <%= @review.title %>
   <%= @review.body %>
-  <% if current_admin %>
-    <%= link_to "編集", edit_admin_review_path(@review) %>
-    <%= link_to "削除", admin_review_path(@review), method: :delete %>
+  <% if @review.user == current_user %>
+    <%= link_to "編集", edit_review_path(@review) %>
+    <%= link_to "削除", review_path(@review), method: :delete %>
   <% end %>
-
-  <div>
+<div>
   <p>コメント件数：<%= @review.comments.count %></p>
   <% @review.comments.each do |comment| %>
     <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
     <%= link_to comment.user.name, user_path(comment.user.id) %>
     <%= comment.created_at.strftime('%Y/%m/%d') %>
     <%= comment.comment %>
-    <% if current_admin %>
-      <%= link_to "編集", edit_admin_comment_path(comment) %>
-      <%= link_to "削除", admin_comment_path(comment), method: :delete %>
+    <% if comment.user == current_user %>
+      <%= link_to "編集", edit_comment_path(comment) %>
+      <%= link_to "削除", comment_path(comment), method: :delete %>
     <% end %>
   <% end %>
 </div>
+  <% if current_user %>
+  <div>
+    <%= form_with model: [@review, @comment] do |f| %>
+      <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+      <%= f.submit "送信する" %>
+    <% end %>
+  </div>
+<% end %>

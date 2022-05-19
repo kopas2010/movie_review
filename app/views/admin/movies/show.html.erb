@@ -18,8 +18,7 @@
     <p><%= image_tag review.user.get_profile_image(100,100) %></p>
     <%= link_to review.user.name, admin_user_path(review.user.id) %>
     <%= review.created_at.strftime('%Y/%m/%d') %>
-    <%= review.title %>
-    <%= review.body %>
+    <%= link_to review.title, admin_review_path(review) %>
     <%= link_to "編集", edit_admin_review_path(review) %>
     <%= link_to "削除", admin_review_path(review), method: :delete %>
   <% end %>

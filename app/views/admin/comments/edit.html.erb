@@ -1,0 +1,10 @@
+<h1>コメント編集画面(管理者用)</h1>
+
+<%= form_with model: @comment, method: :patch do |f| %>
+
+  <h4>コメント</h4>
+  <%= f.text_area :comment %>
+
+  <%= f.submit '保存' %>
+
+<% end %>

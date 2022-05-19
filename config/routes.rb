@@ -19,19 +19,25 @@ namespace :admin do
   resources :users, only: [:index, :show, :edit, :update]
   resources :reviews, only: [:index, :show, :edit, :update, :destroy]
   resources :movies, only: [:index, :show, :edit, :update, :destroy]
+  resources :comments, only: [:index, :edit, :update, :destroy]
+  #退会機能
+  get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+  patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
 end
 
 # ユーザー
 scope module: :user do
   root :to => "homes#top"
-  resources :movies, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
-    resources :reviews, only: [:show, :edit, :create, :update, :destroy]
-  end
-
   get "reviews/index" => "reviews/index"
+  resources :movies, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
+    resources :reviews, only: [:create]
+  end
+  resources :reviews, only: [:show, :edit, :update, :destroy] do
+    resources :comments, only: [:create]
+  end
+  resources :comments, only: [:edit, :update, :destroy]
 
   resources :users, only: [:index, :show, :edit, :update]
-  resources :post_images, only: [:new, :index, :show]
   #退会機能
   get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
   patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'

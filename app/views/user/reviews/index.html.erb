@@ -6,11 +6,10 @@
     <p><%= image_tag review.user.get_profile_image(100,100) %></p>
     <%= link_to review.user.name, user_path(review.user.id) %>
     <%= review.created_at.strftime('%Y/%m/%d') %>
-    <%= review.title %>
-    <%= review.body %>
+    <%= link_to review.title, review_path(review) %>
     <% if review.user == current_user %>
-      <%= link_to "編集", edit_movie_review_path(review.movie, review) %>
-      <%= link_to "削除", movie_review_path(review.movie, review), method: :delete %>
+      <%= link_to "編集", edit_review_path(review) %>
+      <%= link_to "削除", review_path(review), method: :delete %>
     <% end %>
   <% end %>
 </div>

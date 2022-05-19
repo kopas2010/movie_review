@@ -1,13 +1,12 @@
 <div>
-  <p>コメント件数：<%= @reviews.count %></p>
+  <p>レビュー件数：<%= @reviews.count %></p>
   <% @reviews.each do |review| %>
     <p><%= image_tag review.movie.image, size: "100x100" %></p>
     <%= link_to review.movie.title, admin_movie_path(review.movie.id) %>
     <p><%= image_tag review.user.get_profile_image(100,100) %></p>
     <%= link_to review.user.name, admin_user_path(review.user.id) %>
     <%= review.created_at.strftime('%Y/%m/%d') %>
-    <%= review.title %>
-    <%= review.body %>
+    <%= link_to review.title, admin_review_path(review.id) %>
     <%= link_to "編集", edit_admin_review_path(review.id) %>
     <%= link_to "削除", admin_review_path(review.id), method: :delete %>
   <% end %>
