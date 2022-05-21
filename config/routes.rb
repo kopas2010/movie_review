@@ -31,6 +31,7 @@ scope module: :user do
   get "reviews/index" => "reviews/index"
   resources :movies, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
     resources :reviews, only: [:create]
+    resource :favorites, only: [:create, :destroy]
   end
   resources :reviews, only: [:show, :edit, :update, :destroy] do
     resources :comments, only: [:create]

@@ -8,6 +8,20 @@
     <%= image_tag 'no_image', size: "200x200" %>
   <% end %>
 
+  <% if @movie.favorited_by?(current_user) %>
+    <p>
+      <%= link_to movie_favorites_path(@movie), method: :delete do %>
+        ♥<%= @movie.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to movie_favorites_path(@movie), method: :post do %>
+        ♡<%= @movie.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+
 <h2>本文</h2>
 <p><%= @movie.body %></p>
 <% if current_user %>
