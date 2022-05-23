@@ -1,0 +1,26 @@
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>ユーザー名</th>
+      <th></th>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= link_to user_path(user.id) do %>
+          <%= image_tag user.get_profile_image(50,50) %>
+          <% end %>
+        </td>
+        <td><%= link_to user.name,user, class: "user_#{user.id}" %></td>
+        <td>
+					<p>レビュー数：<%= user.reviews.count %></p>
+				</td>
+				<td><%= user.followers.count %>フォロワー</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,3 +1,37 @@
-<h1>user/homes/top</h1>
-<h2>User info</h2>
-<%= render 'user/users/info', user: current_user %>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>ユーザー詳細</h2>
+      <%= render 'user/users/info', user: current_user %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+    <h2>新着映画</h2>
+      <div class = "row">
+        <div class = "d-flex mx-auto" >
+          <% @movies.each do |movie| %>
+            <div class = "m-1 p-2 text-center table-background" >
+              <%= link_to movie_path(movie) do %>
+                <%= image_tag movie.image, size: "100x100" %>
+                <p class="card-title text-dark pt-2"><%= movie.title %></p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <h2>新着レビュー</h2>
+      <div class = "row">
+        <div class = "d-flex mx-auto" >
+          <% @reviews.each do |review| %>
+            <div class = "m-1 p-2 text-center table-background" >
+              <%= link_to review_path(review) do %>
+                <%= image_tag review.user.get_profile_image(100,100) %>
+                <p class="card-title text-dark pt-2"><%= review.title %></p>
+                <p class="card-title text-dark pt-2"><%= review.movie.title %></p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
