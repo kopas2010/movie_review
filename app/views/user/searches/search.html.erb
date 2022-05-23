@@ -22,8 +22,12 @@
         <tbody>
           <% @movies.each do |movie| %>
           <tr>
+            <td><%= link_to movie_path(movie.id) do %>
+              <%= image_tag movie.image, size:'100x100' %>
+              <% end %>
+            </td>
             <td><%= movie.title %></td>
-            <td><%= movie.body %></td>
+            <td>レビュー数：<%= movie.reviews.count %></td>
           </tr>
           <% end %>
         </tbody>
