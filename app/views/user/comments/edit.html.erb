@@ -1,10 +1,17 @@
-<h1>コメント編集画面</h1>
 
-<%= form_with model: @comment, method: :patch do |f| %>
-
-  <h4>コメント</h4>
-  <%= f.text_area :comment %>
-
-  <%= f.submit '保存' %>
-
-<% end %>
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2>User info</h2>
+    <%= form_with model:@comment, local:true do |f| %>
+      <%#= render 'layouts/errors', obj: @user %>
+      <div class="form-group">
+        <%= f.label :comment %>
+        <%= f.text_area :comment, class: "form-control comment" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit class: 'btn btn-secondary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

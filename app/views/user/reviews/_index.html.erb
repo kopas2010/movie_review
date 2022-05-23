@@ -1,0 +1,24 @@
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>タイトル</th>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= link_to movie_path(review.movie.id) do %>
+          <%= image_tag review.movie.image, size:'50x50' %>
+          <% end %>
+        </td>
+        <td><%= link_to review.movie.title, movie_path(review.movie.id) %></td>
+
+        <td><%= link_to review.title, review_path(review.id) %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
