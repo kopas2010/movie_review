@@ -1,0 +1,32 @@
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>ユーザー名</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= link_to admin_user_path(user.id) do %>
+          <%= image_tag user.get_profile_image(50,50) %>
+          <% end %>
+        </td>
+        <td><%= link_to user.name, admin_user_path(user.id) %></td>
+        <td>
+					<p>レビュー数：<%= user.reviews.count %></p>
+				</td>
+				<td><%= user.followers.count %>フォロワー</td>
+				<td>
+				  <% if user.is_deleted %>
+            退会済ユーザー
+          <% else %>
+          <% end %>
+				</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

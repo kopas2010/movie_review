@@ -1,19 +1,67 @@
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <%= @user.email %>
-  <%= @user.created_at %>
-  <p><%= link_to "プロフィール編集", edit_admin_user_path(@user) %></p>
-  <p><%= link_to "退会", admin_unsubscribe_path(@user) %></p>
-
-  <p>コメント件数：<%= @user.reviews.count %></p>
-  <% @user.reviews.each do |review| %>
-    <p><%= image_tag review.movie.image, size: "100x100" %></p>
-    <%= link_to review.movie.title, movie_path(review.movie.id) %>
-    <%= review.created_at.strftime('%Y/%m/%d') %>
-    <%= link_to review.title, admin_review_path(review.id) %>
-      <%= link_to "編集", edit_admin_review_path(review.id) %>
-      <%= link_to "削除", admin_review_path(review.id), method: :delete %>
-  <% end %>
-
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>ユーザー詳細</h2>
+      <table class='table'>
+        <tr><%= image_tag @user.get_profile_image(100,100) %></tr>
+        <tr>
+      	  <th>name</th>
+      	  <th><%= @user.name %></th>
+        </tr>
+        <tr>
+          <th>favorite movie</th>
+          <th><%= @user.favolite_movie %></th>
+        </tr>
+        <tr>
+      	  <th>introduction</th>
+      	  <th><%= @user.introduction %></th>
+        </tr>
+        <tr>
+          <th>review</th>
+          <th><%= @user.reviews.count %></th>
+        </tr>
+        <tr>
+      		<th>follows</th>
+     		<th><%=link_to @user.followings.count, admin_followings_path(@user.id) %></th>
+      	</tr>
+      	<tr>
+      		<th>followers</th>
+	      	<th><%=link_to @user.followers.count, admin_followers_path(@user.id) %></th>
+       	</tr>
+      </table>
+      <div class='row'>
+        <%= link_to edit_admin_user_path(@user), class: "btn btn-outline-secondary btn-block edit_user_#{@user.id}" do %>
+          <i class="fas fa-edit"></i>ユーザー情報編集
+        <% end %>
+      </div>
+      <div class='row'>
+        <%= link_to admin_unsubscribe_path(@user), class: "btn btn-outline-secondary btn-block" do %>
+          <i class="fa fa-trash"></i>退会
+        <% end %>
+      </div>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+  		<h2><%= @user.name %>のレビュー一覧</h2>
+      <table class="table">
+					<% @user.reviews.each do |review|%>
+				<tr>
+					<td><%= link_to admin_movie_path(review.movie) do %>
+					  <%= image_tag review.movie.image, size:'50x50' %>
+					  <% end %>
+						<%= link_to review.movie.title, admin_movie_path(review.movie) %>
+					</td>
+					<td>
+						<%= link_to review.title, admin_review_path(review.id)%>
+					</td>
+					<td>
+					<% if current_admin %>
+						<%= link_to "編集", edit_admin_review_path(review), class: "btn-sm btn-success" %>
+						<%= link_to "削除", admin_review_path(review.id), method: :delete, class: "btn-sm btn-danger" %>
+					<% end %>
+					</td>
+				</tr>
+					<% end %>
+			</table>
+    </div>
+  </div>
 </div>

@@ -1,26 +1,54 @@
-<h3>レビュー詳細</h3>
-  <p><%= image_tag @review.movie.image, size: "100x100" %></p>
-  <%= link_to @review.movie.title, admin_movie_path(@review.movie.id) %>
-  <p><%= image_tag @review.user.get_profile_image(100,100) %></p>
-  <%= link_to @review.user.name, user_path(@review.user.id) %>
-  <%= @review.created_at.strftime('%Y/%m/%d') %>
-  <%= @review.title %>
-  <%= @review.body %>
-  <% if current_admin %>
-    <%= link_to "編集", edit_admin_review_path(@review) %>
-    <%= link_to "削除", admin_review_path(@review), method: :delete %>
-  <% end %>
-
-  <div>
-  <p>コメント件数：<%= @review.comments.count %></p>
-  <% @review.comments.each do |comment| %>
-    <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
-    <%= link_to comment.user.name, user_path(comment.user.id) %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %>
-    <%= comment.comment %>
-    <% if current_admin %>
-      <%= link_to "編集", edit_admin_comment_path(comment) %>
-      <%= link_to "削除", admin_comment_path(comment), method: :delete %>
-    <% end %>
-  <% end %>
+<div class='col-md-8 offset-md-1'>
+	<h2><%= @review.movie.title %></h2>
+	<table class='table'>
+	  <tr>
+     <td><%= image_tag @review.movie.image, size:'200x200' %></td>
+     <td><%= @review.movie.body %></td>
+    </tr>
+  </table>
+  レビュー
+  <table class="table">
+    <tr>
+      <td>
+        <%= link_to image_tag(@review.user.get_profile_image(50,50)), admin_user_path(@review.user) %>
+        <%= link_to @review.user.name, admin_user_path(@review.user) %>
+      </td>
+      <td>
+        <%= @review.title %>
+      </td>
+      <td>
+        <% if current_admin %>
+          <%= link_to "編集", edit_admin_review_path(@review), class: "btn-sm btn-success" %>
+          <%= link_to "削除", admin_review_path(@review.id), method: :delete,class: "btn-sm btn-danger" %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td>
+        <%= @review.body %>
+      </td>
+    </tr>
+  </table>
+  <table class="table">
+    レビューへのコメント：<%= @review.comments.count %>件
+			<% @review.comments.each do |comment|%>
+		<tr>
+			<td>
+				<%= link_to image_tag(comment.user.get_profile_image(50,50)), admin_user_path(comment.user) %>
+				<%= link_to comment.user.name, admin_user_path(comment.user) %>
+			</td>
+			<td>
+				<%= comment.comment %>
+			</td>
+			<td>
+				<% if current_admin %>
+				<%= link_to "編集", edit_admin_comment_path(comment), class: "btn-sm btn-success" %>
+				<%= link_to "削除", admin_comment_path(comment.id), method: :delete, class: "btn-sm btn-danger" %>
+				<% end %>
+			</td>
+		</tr>
+			<% end %>
+	</table>
 </div>

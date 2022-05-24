@@ -1,0 +1,27 @@
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>タイトル</th>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% movies.each do |movie| %>
+      <tr>
+        <td><%= link_to admin_movie_path(movie.id) do %>
+          <%= image_tag movie.image, size:'50x50' %>
+          <% end %>
+        </td>
+        <td><%= link_to movie.title, admin_movie_path(movie.id) %></td>
+        <td>
+          <p>❤︎<%= movie.favorites.count %></p>
+        </td>
+        <td>
+					<p>レビュー数：<%= movie.reviews.count %></p>
+				</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

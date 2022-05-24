@@ -30,6 +30,10 @@ Rails.application.routes.draw do
 
     #検索機能
     get "search" => "searches#search"
+
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+
   end
 
   # ユーザー
