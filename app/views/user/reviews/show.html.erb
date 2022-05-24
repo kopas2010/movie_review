@@ -59,6 +59,7 @@
 				</tr>
 					<% end %>
 			</table>
+			<% if current_user %>
 			<div class="post-comment">
 				<%= form_for [@review, @comment] do |f| %>
 				<div class="form-group">
@@ -67,6 +68,7 @@
 				<%= f.submit "送信する" %>
 				<% end %>
 			</div>
+			<% end %>
     </div>
   </div>
 </div>

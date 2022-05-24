@@ -2,7 +2,33 @@
   <div class='row'>
     <div class='col-md-3'>
       <h2>ユーザー詳細</h2>
-      <%= render 'user/users/info', user: @user %>
+      <table class='table'>
+        <tr><%= image_tag @user.get_profile_image(100,100) %></tr>
+        <tr>
+      	  <th>name</th>
+      	  <th><%= @user.name %></th>
+        </tr>
+        <tr>
+          <th>favorite movie</th>
+          <th><%= @user.favolite_movie %></th>
+        </tr>
+        <tr>
+      	  <th>introduction</th>
+      	  <th><%= @user.introduction %></th>
+        </tr>
+        <tr>
+          <th>review</th>
+          <th><%= @user.reviews.count %></th>
+        </tr>
+        <tr>
+      		<th>follows</th>
+     		<th><%=link_to @user.followings.count, user_followings_path(@user.id) %></th>
+      	</tr>
+      	<tr>
+      		<th>followers</th>
+	      	<th><%=link_to @user.followers.count, user_followers_path(@user.id) %></th>
+       	</tr>
+      </table>
     </div>
     <div class='col-md-8 offset-md-1'>
   		<h2><%= @user.name %>のレビュー一覧</h2>
@@ -18,10 +44,12 @@
 						<%= link_to review.title, review_path(review.id)%>
 					</td>
 					<td>
+					<% if current_user %>
 						<% if review.user_id == current_user.id %>
-						<%= link_to "編集", edit_review_path(review), class: "btn-sm btn-success" %>
-						<%= link_to "削除", review_path(review.id), method: :delete, class: "btn-sm btn-danger" %>
+						  <%= link_to "編集", edit_review_path(review), class: "btn-sm btn-success" %>
+						  <%= link_to "削除", review_path(review.id), method: :delete, class: "btn-sm btn-danger" %>
 						<% end %>
+					<% end %>
 					</td>
 				</tr>
 					<% end %>
