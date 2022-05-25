@@ -3,6 +3,7 @@
     <div class='col-md-8 offset-md-1'>
       <h2>映画一覧</h2>
       <%= render 'index', movies: @movies %>
+      <%= paginate(@movies) %>
     </div>
   </div>
 </div>

@@ -3,6 +3,7 @@
     <div class='col-md-10 offset-md-1'>
       <h2>コメント一覧：<%= @comments.count %>件</h2>
       <%= render 'index', comments: @comments%>
+      <%= paginate(@comments) %>
     </div>
   </div>
 </div>
