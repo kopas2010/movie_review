@@ -30,7 +30,7 @@ class User::SessionsController < Devise::SessionsController
       @user = User.find_by(email: params[:user][:email])
       return if !@user
       if @user.valid_password?(params[:user][:password]) && @user.is_deleted
-        flash[:error] = "退会済みです。"
+        flash[:error] = "退会済みユーザーです。新規登録をお願いします。"
         redirect_to new_user_registration_path
       else
         flash[:error] = "必須項目を入力してください。"

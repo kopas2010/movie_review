@@ -1,54 +1,58 @@
-<div class='col-md-8 offset-md-1'>
-	<h2><%= @review.movie.title %></h2>
-	<table class='table'>
-	  <tr>
-     <td><%= image_tag @review.movie.image, size:'200x200' %></td>
-     <td><%= @review.movie.body %></td>
-    </tr>
-  </table>
-  レビュー
-  <table class="table">
-    <tr>
-      <td>
-        <%= link_to image_tag(@review.user.get_profile_image(50,50)), admin_user_path(@review.user) %>
-        <%= link_to @review.user.name, admin_user_path(@review.user) %>
-      </td>
-      <td>
-        <%= @review.title %>
-      </td>
-      <td>
-        <% if current_admin %>
-          <%= link_to "編集", edit_admin_review_path(@review), class: "btn-sm btn-success" %>
-          <%= link_to "削除", admin_review_path(@review.id), method: :delete, "data-confirm" => "本当に削除しますか？",class: "btn-sm btn-danger" %>
-        <% end %>
-      </td>
-    </tr>
-  </table>
-  <table>
-    <tr>
-      <td>
-        <%= @review.body %>
-      </td>
-    </tr>
-  </table>
-  <table class="table">
-    レビューへのコメント：<%= @review.comments.count %>件
-			<% @review.comments.each do |comment|%>
-		<tr>
-			<td>
-				<%= link_to image_tag(comment.user.get_profile_image(50,50)), admin_user_path(comment.user) %>
-				<%= link_to comment.user.name, admin_user_path(comment.user) %>
-			</td>
-			<td>
-				<%= comment.comment %>
-			</td>
-			<td>
-				<% if current_admin %>
-				<%= link_to "編集", edit_admin_comment_path(comment), class: "btn-sm btn-success" %>
-				<%= link_to "削除", admin_comment_path(comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger" %>
-				<% end %>
-			</td>
-		</tr>
-			<% end %>
-	</table>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-10 offset-md-1'>
+    	<h2><%= @review.movie.title %></h2>
+    	<table class='table'>
+    	  <tr>
+         <td><%= image_tag @review.movie.image, size:'200x200' %></td>
+         <td><%= @review.movie.body %></td>
+        </tr>
+      </table>
+      レビュー
+      <table class="table">
+        <tr>
+          <td>
+            <%= link_to image_tag(@review.user.get_profile_image(50,50)), admin_user_path(@review.user) %>
+            <%= link_to @review.user.name, admin_user_path(@review.user) %>
+          </td>
+          <td>
+            <%= @review.title %>
+          </td>
+          <td>
+            <% if current_admin %>
+              <%= link_to "編集", edit_admin_review_path(@review), class: "btn-sm btn-success" %>
+              <%= link_to "削除", admin_review_path(@review.id), method: :delete, "data-confirm" => "本当に削除しますか？",class: "btn-sm btn-danger" %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td>
+            <%= @review.body %>
+          </td>
+        </tr>
+      </table>
+      <table class="table">
+        レビューへのコメント：<%= @review.comments.count %>件
+    			<% @review.comments.each do |comment|%>
+		    <tr>
+		    	<td>
+		    		<%= link_to image_tag(comment.user.get_profile_image(50,50)), admin_user_path(comment.user) %>
+			    	<%= link_to comment.user.name, admin_user_path(comment.user) %>
+			    </td>
+    			<td>
+	    			<%= comment.comment %>
+	    		</td>
+	    		<td>
+	    			<% if current_admin %>
+		    		<%= link_to "編集", edit_admin_comment_path(comment), class: "btn-sm btn-success" %>
+	    			<%= link_to "削除", admin_comment_path(comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger" %>
+	    			<% end %>
+	    		</td>
+    		</tr>
+    			<% end %>
+    	</table>
+    </div>
+  </div>
 </div>

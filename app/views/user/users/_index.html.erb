@@ -10,17 +10,20 @@
   </thead>
   <tbody>
     <% users.each do |user| %>
-      <tr>
-        <td><%= link_to user_path(user.id) do %>
-          <%= image_tag user.get_profile_image(50,50) %>
-          <% end %>
-        </td>
-        <td><%= link_to user.name,user, class: "user_#{user.id}" %></td>
-        <td>
-					<p>レビュー数：<%= user.reviews.count %></p>
-				</td>
-				<td><%= user.followers.count %>フォロワー</td>
-      </tr>
+      <% if user.is_deleted %>
+      <% else %>
+        <tr>
+          <td><%= link_to user_path(user.id) do %>
+            <%= image_tag user.get_profile_image(50,50) %>
+            <% end %>
+          </td>
+          <td><%= link_to user.name,user, class: "user_#{user.id}" %></td>
+          <td>
+					  <p>レビュー数：<%= user.reviews.count %></p>
+				  </td>
+				  <td><%= user.followers.count %>フォロワー</td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

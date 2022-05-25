@@ -25,8 +25,8 @@ Rails.application.routes.draw do
     resources :movies, only: [:index, :show, :edit, :update, :destroy]
     resources :comments, only: [:index, :edit, :update, :destroy]
     #退会機能
-    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+    patch '/users/:id/cancel' => 'users#cancel', as: 'cancel'
 
     #検索機能
     get "search" => "searches#search"

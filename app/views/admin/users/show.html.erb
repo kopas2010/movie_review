@@ -35,8 +35,14 @@
         <% end %>
       </div>
       <div class='row'>
-        <%= link_to admin_unsubscribe_path(@user), class: "btn btn-outline-secondary btn-block" do %>
-          <i class="fa fa-trash"></i>退会
+        <% if @user.is_deleted %>
+          <%= link_to admin_cancel_path , method: :patch, "data-confirm" => "本当に退会を取り消しますか？", class: "btn btn-outline-secondary btn-block" do %>
+            <i class="fa fa-trash"></i>退会取り消し
+          <% end %>
+        <% else %>
+          <%= link_to admin_withdrawal_path , method: :patch, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-secondary btn-block" do %>
+            <i class="fa fa-trash"></i>退会
+          <% end %>
         <% end %>
       </div>
     </div>
