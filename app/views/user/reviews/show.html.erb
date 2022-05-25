@@ -25,7 +25,7 @@
           <td>
             <% if @review.user == current_user %>
               <%= link_to "編集", edit_review_path(@review), class: "btn-sm btn-success" %>
-              <%= link_to "削除", review_path(@review.id), method: :delete,class: "btn-sm btn-danger" %>
+              <%= link_to "削除", review_path(@review.id), method: :delete, "data-confirm" => "本当に削除しますか？",class: "btn-sm btn-danger" %>
             <% end %>
           </td>
         </tr>
@@ -53,7 +53,7 @@
 					<td>
 						<% if comment.user == current_user %>
 						<%= link_to "編集", edit_comment_path(comment), class: "btn-sm btn-success" %>
-						<%= link_to "削除", comment_path(comment.id), method: :delete, class: "btn-sm btn-danger" %>
+						<%= link_to "削除", comment_path(comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger" %>
 						<% end %>
 					</td>
 				</tr>

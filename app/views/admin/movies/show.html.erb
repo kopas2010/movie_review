@@ -10,7 +10,7 @@
         <td><p>レビュー数：<%= @movie.reviews.count %></p></td>
         <% if current_admin %>
           <td><%= link_to '編集', edit_admin_movie_path(@movie), class: "btn btn-sm btn-success edit_movie_#{@movie.id}" %></td>
-          <td><%= link_to '削除', admin_movie_path(@movie), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_movie_#{@movie.id}"%></td>
+          <td><%= link_to '削除', admin_movie_path(@movie), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger destroy_movie_#{@movie.id}"%></td>
         <% end %>
     </tr>
     </table>
@@ -27,7 +27,7 @@
 					<td>
 					<% if current_admin %>
 						<%= link_to "編集", edit_admin_review_path(review), class: "btn-sm btn-success" %>
-						<%= link_to "削除", admin_review_path(review.id), method: :delete, class: "btn-sm btn-danger" %>
+						<%= link_to "削除", admin_review_path(review.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger" %>
 					<% end %>
 					</td>
 				</tr>

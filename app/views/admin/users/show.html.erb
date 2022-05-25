@@ -56,7 +56,7 @@
 					<td>
 					<% if current_admin %>
 						<%= link_to "編集", edit_admin_review_path(review), class: "btn-sm btn-success" %>
-						<%= link_to "削除", admin_review_path(review.id), method: :delete, class: "btn-sm btn-danger" %>
+						<%= link_to "削除", admin_review_path(review.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger" %>
 					<% end %>
 					</td>
 				</tr>
