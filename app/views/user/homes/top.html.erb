@@ -27,6 +27,22 @@
                 <%= image_tag review.user.get_profile_image(100,100) %>
                 <p class="card-title text-dark pt-2"><%= review.title %></p>
                 <p class="card-title text-dark pt-2"><%= review.movie.title %></p>
+                <td>
+                  <p>評価 :<%= review.star%>点</p>
+                  <div id="star-rate<%= review.id%>"></div>
+                  <script>
+                    $('#star-rate<%= review.id%>').raty({
+                     size      : 36,
+                     starOff   : '<%= asset_path('star-off.png') %>',
+                     starOn    : '<%= asset_path('star-on.png') %>',
+                     starHalf: '<%= asset_path('star-half.png') %>',
+                     half      : true,
+                     readOnly: true,
+                     score: <%= review.star %>,
+                    });
+                  </script>
+              </div>
+		    	</td>
               <% end %>
             </div>
           <% end %>
