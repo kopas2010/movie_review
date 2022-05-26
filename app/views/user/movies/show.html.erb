@@ -47,6 +47,22 @@
 						<%= link_to review.title, review_path(review.id)%>
 					</td>
 					<td>
+					  <%#星評価%>
+            <p>評価 :<%= review.star%>点</p>
+              <div id="star-rate<%= review.id%>"></div>
+              <script>
+                $('#star-rate<%= review.id%>').raty({
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  half      : false,
+                  readOnly: true,
+                  score: <%= review.star %>,
+                });
+              </script>
+              </div>
+		    	</td>
+					<td>
 					<% if current_user %>
 						<% if review.user_id == current_user.id %>
 						<%= link_to "編集", edit_review_path(review), class: "btn-sm btn-success" %>
@@ -63,6 +79,22 @@
 				<div class="form-group">
           <%= f.text_area :title, class: "form-control title", size: "80x1", placeholder: "タイトルをここに" %>
         </div>
+        <%#星評価%>
+        <div class="form-group row" id="star">
+          <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
+          <%= f.hidden_field :star, id: :review_star %>
+        </div>
+        <!-- 評価javascript -->
+        <script>
+          $('#star').raty({
+            size     : 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+
+            scoreName: 'comment[star]',
+            half: false,
+          });
+        </script>
 			  <div class="form-group">
           <%= f.text_area :body, class: "form-control body", size: "80x5", placeholder: "レビューをここに" %>
         </div>
