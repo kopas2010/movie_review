@@ -4,16 +4,16 @@
       <h2>ユーザー詳細</h2>
       <%= render 'user/users/info', user: current_user %>
     </div>
-    <div class='col-md-8 offset-md-1'>
+    <div class='col-md-9'>
     <h2>新着映画</h2>
       <div class = "row">
         <div class = "d-flex mx-auto" >
           <% @movies.each do |movie| %>
-            <div class = "m-1 p-2 text-center table-background" >
-              <%= link_to movie_path(movie) do %>
-                <%= image_tag movie.image, size: "100x100" %>
-                <p class="card-title text-dark pt-2"><%= movie.title %></p>
-              <% end %>
+            <div class="card" style="width: 15rem;">
+              <%= image_tag movie.image, size: "200x200" %>
+              <div class="card-body">
+                <div class="card-title"><%= link_to movie.title, movie_path(movie) %></div>
+              </div>
             </div>
           <% end %>
         </div>
@@ -22,12 +22,13 @@
       <div class = "row">
         <div class = "d-flex mx-auto" >
           <% @reviews.each do |review| %>
-            <div class = "m-1 p-2 text-center table-background" >
-              <%= link_to review_path(review) do %>
-                <%= image_tag review.user.get_profile_image(100,100) %>
-                <p class="card-title text-dark pt-2"><%= review.title %></p>
-                <p class="card-title text-dark pt-2"><%= review.movie.title %></p>
+            <div class="card" style="width: 15rem;">
+              <%= image_tag review.user.get_profile_image(200,200) %>
+              <div class="card-body">
+                <div class="card-title"><%= link_to review.title,review_path(review) %></div>
+
                 <td>
+                  <div class="card-star">
                   <p>評価 :<%= review.star%>点</p>
                   <div id="star-rate<%= review.id%>"></div>
                   <script>
@@ -41,9 +42,9 @@
                      score: <%= review.star %>,
                     });
                   </script>
+                  </div>
+		    	      </td>
               </div>
-		    	</td>
-              <% end %>
             </div>
           <% end %>
         </div>

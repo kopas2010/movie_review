@@ -26,6 +26,23 @@
 					    <td>
 						    <%= link_to review.title, admin_review_path(review.id)%>
 				    	</td>
+            <td>
+					  <%#星評価%>
+            <p>評価 :<%= review.star%>点</p>
+              <div id="star-rate<%= review.id%>"></div>
+              <script>
+                $('#star-rate<%= review.id%>').raty({
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  half      : true,
+                  readOnly: true,
+                  score: <%= review.star %>,
+                });
+              </script>
+              </div>
+		    	  </td>
 					    <td>
 					    <% if current_admin %>
 						    <%= link_to "編集", edit_admin_review_path(review), class: "btn-sm btn-success" %>
