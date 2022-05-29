@@ -26,7 +26,7 @@
               <%= image_tag review.user.get_profile_image(200,200) %>
               <div class="card-body">
                 <div class="card-title"><%= link_to review.title,review_path(review) %></div>
-
+                <div class="card-title"><%= review.movie.title %></div>
                 <td>
                   <div class="card-star">
                   <p>評価 :<%= review.star%>点</p>
